@@ -3,17 +3,13 @@ from typing import List  # noqa: F401
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-#from libqtile.utils import guess_terminal
 
-mod = "mod4"
-# terminal = guess_terminal()
-terminal = "alacritty"
+mod = "mod4"            # Sets mod key to SUPER/WINDOWS
+terminal = "alacritty"  # My terminal of choice
 
 
 keys = [
-
     # WINDOW MANAGEMENT
-
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -61,7 +57,6 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 
     # PROGRAMS
-
     # Rofi Menu
     Key([mod], "m", lazy.spawn("rofi -show run")),
     # Rofi Window Nav
@@ -84,17 +79,16 @@ keys = [
 
 groups = [Group(i) for i in ["WWW", "DEV", "TERM", "MISC"]]
 
-for i, group in enumerate(groups):
-    current_key = str(i + 1)
+for i, group in enumerate(groups, 1):
     keys.extend([
         # Switch to selected group
-        Key([mod], current_key, lazy.group[group.name].toscreen()),
+        Key([mod], str(i), lazy.group[group.name].toscreen()),
 
         # Send window to selected group
-        Key([mod, "shift"], current_key, lazy.window.togroup(group.name))
+        Key([mod, "shift"], str(i), lazy.window.togroup(group.name))
 
         # Or, send window to selected group and switch to that group
-        # Key([mod, "shift"], current_key, lazy.window.togroup(group.name, switch_group=True))
+        # Key([mod, "shift"], str(i), lazy.window.togroup(group.name, switch_group=True))
     ])
 
 layouts = [
@@ -112,10 +106,20 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+colors = [["#282c34", "#282c34"], # 0 - panel background
+          ["#3d3f4b", "#434758"], # 1 - background for current screen tab
+          ["#ffffff", "#ffffff"], # 2 - font color for group names
+          ["#ff5555", "#ff5555"], # 3 - border line color for current tab
+          ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
+          ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
+          ["#e1acff", "#e1acff"], # 6 - window name
+          ["#ecbbfb", "#ecbbfb"]] # 7 - background for inactive screens
+
 widget_defaults = dict(
-    font='UbuntuMono Nerd Font',
+    font='Ubuntu Mono',
     fontsize=16,
     padding=3,
+    background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
 
@@ -123,9 +127,41 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),                              
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),        
+                #widget.GroupBox(), 
+                 widget.GroupBox(
+                       font = "Ubuntu Bold",
+                       fontsize = 13,
+                       margin_y = 3,
+                       margin_x = 0,
+                       padding_y = 5,
+                       padding_x = 3,
+                       borderwidth = 3,
+                       active = colors[2],
+                       inactive = colors[7],
+                       rounded = False,
+                       highlight_color = colors[1],
+                       highlight_method = "line",
+                       this_current_screen_border = colors[6],
+                       this_screen_border = colors [4],
+                       other_current_screen_border = colors[6],
+                       other_screen_border = colors[4],
+                       foreground = colors[2],
+                       background = colors[0]
+                       ), 
                 widget.Prompt(),
+                widget.Sep(
+                       linewidth = 1,
+                       size_percent=70,
+                       padding = 30,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),                
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -134,7 +170,21 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),               
                 widget.Systray(),
-                widget.Clock(format='%d-%m-%Y %a %H:%M'),                
+                widget.CurrentLayout(),
+                widget.Sep(
+                       linewidth = 1,
+                       size_percent=70,
+                       padding = 30,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+                widget.Clock(format='%d-%m-%Y %a %H:%M'), 
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),                
             ],
             30,
             opacity=0.9
