@@ -77,7 +77,7 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 ]
 
-groups = [Group(i) for i in ["WWW", "DEV", "TERM", "MISC"]]
+groups = [Group(i) for i in [" ", " ", " ", " "]]
 
 for i, group in enumerate(groups, 1):
     keys.extend([
@@ -113,13 +113,14 @@ colors = [["#282c34", "#282c34"], # 0 - panel background
           ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
           ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
           ["#e1acff", "#e1acff"], # 6 - window name
-          ["#ecbbfb", "#ecbbfb"]] # 7 - background for inactive screens
+          ["#8e8e8e", "#8e8e8e"]] # 7 - background for inactive screens
 
 widget_defaults = dict(
-    font='Ubuntu Mono',
-    fontsize=16,
+    font='UbuntuMono Nerd Font Bold',
+    fontsize=18,
     padding=3,
-    background=colors[0]
+    background=colors[0],
+    foreground=colors[2]
 )
 extension_defaults = widget_defaults.copy()
 
@@ -129,39 +130,32 @@ screens = [
             [
                 widget.Sep(
                        linewidth = 0,
-                       padding = 6,
-                       foreground = colors[2],
-                       background = colors[0]
+                       padding = 6,                       
                        ),        
-                #widget.GroupBox(), 
-                 widget.GroupBox(
-                       font = "Ubuntu Bold",
-                       fontsize = 13,
-                       margin_y = 3,
-                       margin_x = 0,
-                       padding_y = 5,
-                       padding_x = 3,
-                       borderwidth = 3,
-                       active = colors[2],
-                       inactive = colors[7],
-                       rounded = False,
-                       highlight_color = colors[1],
-                       highlight_method = "line",
-                       this_current_screen_border = colors[6],
-                       this_screen_border = colors [4],
-                       other_current_screen_border = colors[6],
-                       other_screen_border = colors[4],
-                       foreground = colors[2],
-                       background = colors[0]
-                       ), 
+                widget.GroupBox(
+                    font = "UbuntuMono Nerd Font",
+                    fontsize = 21,
+                    margin_y = 2,
+                    margin_x = 0,
+                    padding_y = 5,
+                    padding_x = 8,
+                    borderwidth = 3,
+                    active = colors[2],
+                    inactive = colors[7],
+                    block_highlight_text_color=colors[2],
+                    rounded = False,
+                    highlight_method = "block",
+                    this_current_screen_border = colors[5],
+                    this_screen_border = colors [4],
+                    other_current_screen_border = colors[6],
+                    other_screen_border = colors[4],                       
+                ), 
                 widget.Prompt(),
                 widget.Sep(
-                       linewidth = 1,
-                       size_percent=70,
-                       padding = 30,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),                
+                    linewidth = 1,
+                    size_percent=70,
+                    padding = 20,                       
+                ),                
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -174,7 +168,7 @@ screens = [
                 widget.Sep(
                        linewidth = 1,
                        size_percent=70,
-                       padding = 30,
+                       padding = 20,
                        foreground = colors[2],
                        background = colors[0]
                        ),
