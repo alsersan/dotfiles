@@ -1,0 +1,8 @@
+# Composer
+picom &
+
+# Keyboard Layout
+setxkbmap -layout es &
+
+# Wallpaper
+feh --bg-scale Downloads/arch-linux-wallpaper-windows.png &
