@@ -64,6 +64,12 @@ keys = [
     # Rofi Window Nav
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show")),
 
+    # Browser
+    Key([mod], "b", lazy.spawn("firefox")),
+
+    # VS Code
+    Key([mod], "c", lazy.spawn("code")),
+
     # Volume
     Key([], "XF86AudioLowerVolume", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ -5%"
