@@ -64,8 +64,8 @@ keys = [
     # Rofi Window Nav
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show")),
 
-    # Browser
-    Key([mod], "b", lazy.spawn("firefox")),
+    # Firefox
+    Key([mod], "f", lazy.spawn("firefox")),
 
     # VS Code
     Key([mod], "c", lazy.spawn("code")),
@@ -99,13 +99,29 @@ for i, group in enumerate(groups, 1):
         # Key([mod, "shift"], str(i), lazy.window.togroup(group.name, switch_group=True))
     ])
 
+colors = [["#191919", "#191919"], # 0 - panel background
+          ["#3d3f4b", "#434758"], # 1 - background for current screen tab
+          ["#ffffff", "#ffffff"], # 2 - font color for group names
+          ["#ff5555", "#ff5555"], # 3 - border line color for current tab
+          ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
+          ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
+          ["#e1acff", "#e1acff"], # 6 - window name
+          ["#8e8e8e", "#8e8e8e"]] # 7 - background for inactive screens
+
+
+layout_conf = {
+    'border_focus': colors[5][0],
+    'border_width': 1,
+    'margin': 2,
+}
+
 layouts = [
-    layout.Columns(border_focus_stack='#d75f5f'),
-    layout.Max(),
+    #layout.Columns(border_focus_stack='#d75f5f', ),
+    layout.Max(**layout_conf),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
+    layout.MonadTall(**layout_conf),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -114,14 +130,6 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-colors = [["#282c34", "#282c34"], # 0 - panel background
-          ["#3d3f4b", "#434758"], # 1 - background for current screen tab
-          ["#ffffff", "#ffffff"], # 2 - font color for group names
-          ["#ff5555", "#ff5555"], # 3 - border line color for current tab
-          ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
-          ["#e1acff", "#e1acff"], # 6 - window name
-          ["#8e8e8e", "#8e8e8e"]] # 7 - background for inactive screens
 
 widget_defaults = dict(
     font='UbuntuMono Nerd Font Bold',
@@ -236,7 +244,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
-])
+], border_focus=colors[5][0])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
