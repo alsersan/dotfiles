@@ -112,7 +112,7 @@ colors = [["#191919", "#191919"], # 0 - panel background
 layout_conf = {
     'border_focus': colors[5][0],
     'border_width': 1,
-    'margin': 4,
+    'margin': 6,
 }
 
 layouts = [
