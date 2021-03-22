@@ -137,9 +137,9 @@ screens = [
         top=bar.Bar(
             [
                 widget.Sep(
-                       linewidth = 0,
-                       padding = 6,                       
-                       ),        
+                    linewidth = 0,
+                    padding = 6,                       
+                ),        
                 widget.GroupBox(
                     font = "UbuntuMono Nerd Font",
                     fontsize = 21,
@@ -172,21 +172,39 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),               
                 widget.Systray(),
+                widget.CurrentLayoutIcon(
+                    scale=0.70
+                ),
                 widget.CurrentLayout(),
+                widget.Sep(                   
+                    linewidth=0,
+                    padding = 8,                        
+                ),                  
+                widget.TextBox(
+                    font = "UbuntuMono Nerd Font",
+                    text = '  ',                        
+                    background = colors[5],                     
+                    fontsize = 20
+                ),     
+                widget.Clock(                    
+                    background = colors[5],
+                    format='%d/%m/%Y %a'
+                ),        
+                widget.TextBox(
+                    font = "UbuntuMono Nerd Font",
+                    text = '  ',                        
+                    background = colors[5],                     
+                    fontsize = 22
+                ),                     
+                widget.Clock(                    
+                    background = colors[5],
+                    format='%H:%M'
+                ),
                 widget.Sep(
-                       linewidth = 1,
-                       size_percent=70,
-                       padding = 20,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),
-                widget.Clock(format='%d-%m-%Y %a %H:%M'), 
-                widget.Sep(
-                       linewidth = 0,
-                       padding = 6,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),                
+                    background = colors[5],
+                    linewidth = 0,
+                    padding = 8,                       
+                ),                             
             ],
             30,
             opacity=0.9
