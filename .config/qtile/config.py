@@ -112,7 +112,7 @@ colors = [["#191919", "#191919"], # 0 - panel background
 layout_conf = {
     'border_focus': colors[5][0],
     'border_width': 1,
-    'margin': 2,
+    'margin': 4,
 }
 
 layouts = [
@@ -143,11 +143,7 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=bar.Bar(
-            [
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,                       
-                ),        
+            [                      
                 widget.GroupBox(
                     font = "UbuntuMono Nerd Font",
                     fontsize = 21,
