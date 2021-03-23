@@ -1,6 +1,6 @@
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 import os
@@ -176,6 +176,13 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),               
                 widget.Systray(),
+                widget.CheckUpdates(
+                    update_interval = 1800,
+                    distro = "Arch_checkupdates",
+                    display_format = "{updates} Updates", 
+                    no_update_string = '0 Updates',                                          
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')},
+                ),
                 widget.CurrentLayoutIcon(
                     scale=0.70
                 ),
@@ -183,7 +190,7 @@ screens = [
                 widget.Sep(                   
                     linewidth=0,
                     padding = 8,                        
-                ),                  
+                ),
                 widget.TextBox(
                     font = "UbuntuMono Nerd Font",
                     text = '  ',                        
@@ -211,7 +218,7 @@ screens = [
                 ),                             
             ],
             30,
-            opacity=0.9
+            opacity=1.0
         ),
     ),
 ]
@@ -246,8 +253,8 @@ focus_on_window_activation = "smart"
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call([home])
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
