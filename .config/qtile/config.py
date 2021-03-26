@@ -191,11 +191,17 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),               
                 widget.Systray(),
+                 widget.TextBox(
+                    font = "UbuntuMono Nerd Font",
+                    text = ' 勒',   
+                    padding = 8,                                  
+                    fontsize = 20
+                ),     
                 widget.CheckUpdates(
                     update_interval = 1800,
                     distro = "Arch_checkupdates",
-                    display_format = "{updates} Updates", 
-                    no_update_string = '0 Updates',                                          
+                    display_format = "Updates: {updates}", 
+                    no_update_string = 'Updates: 0',                                          
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')},
                 ),
                 widget.CurrentLayoutIcon(
