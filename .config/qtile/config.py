@@ -65,7 +65,7 @@ keys = [
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show")),
 
     # Firefox
-    Key([mod], "f", lazy.spawn("firefox")),
+    Key([mod], "b", lazy.spawn("firefox")),
 
     # VS Code
     Key([mod], "c", lazy.spawn("code")),
@@ -85,18 +85,19 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 ]
 
-groups = [Group(i) for i in [" ", " ", " ", " "]]
+groups = [Group(i) for i in [" ", " ", " ", " "]]
+letters = ["a", "s", "d", "f"]
 
-for i, group in enumerate(groups, 1):
+for i, group in enumerate(groups):
     keys.extend([
-        # Switch to selected group
-        Key([mod], str(i), lazy.group[group.name].toscreen()),
+        ### Switch to selected group
+        Key([mod], letters[i], lazy.group[group.name].toscreen()),
 
-        # Send window to selected group
-        Key([mod, "shift"], str(i), lazy.window.togroup(group.name))
+        ### Send window to selected group
+        Key([mod, "shift"], letters[i], lazy.window.togroup(group.name))
 
-        # Or, send window to selected group and switch to that group
-        # Key([mod, "shift"], str(i), lazy.window.togroup(group.name, switch_group=True))
+        ### Or, send window to selected group and switch to that group (uncomment only one)
+        # Key([mod, "shift"], letters[i], lazy.window.togroup(group.name, switch_group=True))
     ])
 
 colors = [["#191919", "#191919"], # 0 - panel background

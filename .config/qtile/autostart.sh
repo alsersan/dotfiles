@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Volume icone
+# Volume icon
 volumeicon &
 
 # Bluetooth applet
