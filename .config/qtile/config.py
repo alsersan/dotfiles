@@ -9,7 +9,7 @@ import subprocess
 mod = "mod4"            # Sets mod key to SUPER/WINDOWS
 terminal = "alacritty"  # My terminal of choice
 
-
+### KEY BINDINGS
 keys = [
     ### WINDOW MANAGEMENT
     # Switch between windows
@@ -65,32 +65,45 @@ keys = [
     Key([mod], "4", lazy.spawn("/home/alser/.screenlayout/extended-primary-laptop.sh"), lazy.restart(), desc="Extended vertical layout, laptop display primary"),
 
     ### PROGRAMS
-    # Rofi Menu
-    Key([mod], "m", lazy.spawn("rofi -show run")),
-    # Rofi Window Nav
-    Key([mod, 'shift'], "m", lazy.spawn("rofi -show")),
+    # Rofi 
+    Key([mod], "m", lazy.spawn("rofi -show run"), desc="Launch Rofi"),  
+    Key([mod, 'shift'], "m", lazy.spawn("rofi -show"), desc="Show open program windows in Rofi"),
 
     # Firefox
-    Key([mod], "b", lazy.spawn("firefox")),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
 
     # VS Code
-    Key([mod], "c", lazy.spawn("code")),
+    Key([mod], "c", lazy.spawn("code"), desc="Launch VS Code"),
 
     # Volume
     Key([], "XF86AudioLowerVolume", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-    )),
+    ), desc="Volume down"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-    )),
+    ), desc="Volume up"),
     Key([], "XF86AudioMute", lazy.spawn(
         "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-    )),
+    ), desc="Mute audio"),
+
     # Brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%"), desc="Increase brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-"), desc="Decrease Brightness"),
 ]
 
+
+### COLORS
+colors = [["#191919", "#191919"], # 0 - panel background
+          ["#3d3f4b", "#434758"], # 1 - background for current screen tab
+          ["#ffffff", "#ffffff"], # 2 - font color for group names
+          ["#ff5555", "#ff5555"], # 3 - border line color for current tab
+          ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
+          ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
+          ["#e1acff", "#e1acff"], # 6 - window name
+          ["#8e8e8e", "#8e8e8e"]] # 7 - background for inactive screens
+
+
+### GROUPS
 groups = [Group(i) for i in [" ", " ", " ", " "]]
 letters = ["a", "s", "d", "f"]
 
@@ -106,16 +119,9 @@ for i, group in enumerate(groups):
         # Key([mod, "shift"], letters[i], lazy.window.togroup(group.name, switch_group=True))
     ])
 
-colors = [["#191919", "#191919"], # 0 - panel background
-          ["#3d3f4b", "#434758"], # 1 - background for current screen tab
-          ["#ffffff", "#ffffff"], # 2 - font color for group names
-          ["#ff5555", "#ff5555"], # 3 - border line color for current tab
-          ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
-          ["#e1acff", "#e1acff"], # 6 - window name
-          ["#8e8e8e", "#8e8e8e"]] # 7 - background for inactive screens
 
 
+### LAYOUTS
 layout_conf = {
     'border_focus': colors[5][0],
     'border_width': 1,
@@ -138,6 +144,8 @@ layouts = [
 ]
 
 
+
+### WIDGETS
 widget_defaults = dict(
     font='UbuntuMono Nerd Font Bold',
     fontsize=18,
