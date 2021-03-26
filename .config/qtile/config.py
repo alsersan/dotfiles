@@ -11,7 +11,7 @@ terminal = "alacritty"  # My terminal of choice
 
 
 keys = [
-    # WINDOW MANAGEMENT
+    ### WINDOW MANAGEMENT
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -58,7 +58,13 @@ keys = [
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
 
-    # PROGRAMS
+    ### MULTIPLE MONITORS
+    Key([mod], "1", lazy.spawn("/home/alser/.screenlayout/only-external.sh"), lazy.restart(), desc="Only external display"),
+    Key([mod], "2", lazy.spawn("/home/alser/.screenlayout/only-laptop.sh"), lazy.restart(), desc="Only laptop display"),
+    Key([mod], "3", lazy.spawn("/home/alser/.screenlayout/extended-primary-external.sh"), lazy.restart(), desc="Extended vertical layout, external display primary"),
+    Key([mod], "4", lazy.spawn("/home/alser/.screenlayout/extended-primary-laptop.sh"), lazy.restart(), desc="Extended vertical layout, laptop display primary"),
+
+    ### PROGRAMS
     # Rofi Menu
     Key([mod], "m", lazy.spawn("rofi -show run")),
     # Rofi Window Nav
