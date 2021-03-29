@@ -72,8 +72,11 @@ keys = [
     # Firefox
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
 
+    # Chrome
+    Key([mod], "c", lazy.spawn("google-chrome-stable"), desc="Launch Chrome"),
+
     # VS Code
-    Key([mod], "c", lazy.spawn("code"), desc="Launch VS Code"),
+    Key([mod], "v", lazy.spawn("code"), desc="Launch VS Code"),
 
     # Volume
     Key([], "XF86AudioLowerVolume", lazy.spawn(
