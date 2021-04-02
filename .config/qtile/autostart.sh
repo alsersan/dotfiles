@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Network Manager applet
+nm-applet &
+
 # Volume icon
 volumeicon &
 
