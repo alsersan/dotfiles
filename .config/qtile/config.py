@@ -101,7 +101,8 @@ colors = [["#191919", "#191919"], # 0 - panel background
           ["#ffffff", "#ffffff"], # 2 - font color for group names
           ["#ff5555", "#ff5555"], # 3 - border line color for current tab
           ["#74438f", "#74438f"], # 4 - border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
+          ["#0167b9", "#0167b9"], # 5 - color for the 'even widgets'
+          #["#4f76c7", "#4f76c7"], # 5 - color for the 'even widgets'
           ["#e1acff", "#e1acff"], # 6 - window name
           ["#8e8e8e", "#8e8e8e"]] # 7 - background for inactive screens
 
