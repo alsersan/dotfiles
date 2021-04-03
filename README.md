@@ -39,7 +39,7 @@ sudo systemctl enable bluetooth.service
 Use the bluetoothctl command line utility to pair and connect
 
 ```
-bluetoothclt
+bluetoothctl
 ```
 
 to be greeted by its internal command prompt. Then enter:
