@@ -1,3 +1,24 @@
+## Customization
+
+To have a graphical interface to manage all the themes/icons, install [lxappearance](https://archlinux.org/packages/community/x86_64/lxappearance/).
+
+### Themes
+
+Download the theme and copy the folder in `/usr/share/themes`. Edit [`~/.gtkrc-2.0`](./.gtkrc-2.0) and [`~/.config/gtk-3.0/settings.ini`](./.config/gtk-3.0/settings.ini) and change gtk-theme-name. Close session to apply the changes.
+
+### Icons and cursors
+
+Download the icon/cursor theme and copy the folder in `/usr/share/icons`. Edit [`~/.gtkrc-2.0`](./.gtkrc-2.0) and [`~/.config/gtk-3.0/settings.ini`](./.config/gtk-3.0/settings.ini) and change gtk-icon-theme-name (for icons) and gtk-cursor-theme-name (for cursors). Close session to apply the changes.
+
+If you want to change the cursor theme, you will also need to edit `/usr/share/themes/default/index.theme`:
+
+<pre>
+[Icon Theme]
+Inherits=<i>your_theme</i>
+</pre>
+
+Besides, if you are using qtile you have to install [xcb-util-cursor](https://archlinux.org/packages/extra/x86_64/xcb-util-cursor/) to apply the changes.
+
 ## Bluetooth
 
 The following instructions can be used to connect to any bluetooth device, including bluetooth headsets.
