@@ -193,25 +193,37 @@ screens = [
                         'launch': ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
-                ),               
-                widget.Systray(),
-                 widget.TextBox(
+                ),   
+                widget.TextBox(
                     font = "UbuntuMono Nerd Font",
-                    text = ' 勒',   
-                    padding = 8,                                  
-                    fontsize = 20
+                    text = '  ',   
+                    padding = 4,                                  
+                    fontsize = 20,
+                ),        
+                widget.Net(
+                    interface = "wlp1s0"
+                ),                       
+                widget.TextBox(
+                    font = "UbuntuMono Nerd Font",
+                    text = '  ',   
+                    padding = 4,                                  
+                    fontsize = 20,
                 ),     
                 widget.CheckUpdates(
                     update_interval = 1800,
                     distro = "Arch_checkupdates",
-                    display_format = "Updates: {updates}", 
-                    no_update_string = 'Updates: 0',                                          
+                    display_format = "{updates}",                                                               
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')},
                 ),
                 widget.CurrentLayoutIcon(
                     scale=0.70
                 ),
                 widget.CurrentLayout(),
+                widget.Sep(                   
+                    linewidth=0,
+                    padding = 8,                        
+                ),
+                widget.Systray(),
                 widget.Sep(                   
                     linewidth=0,
                     padding = 8,                        
