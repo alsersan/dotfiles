@@ -19,6 +19,8 @@ Inherits=<i>your_theme</i>
 
 Besides, if you are using qtile you have to install [xcb-util-cursor](https://archlinux.org/packages/extra/x86_64/xcb-util-cursor/) to apply the changes.
 
+In my case, I installed [Material-black COLORS](https://www.gnome-look.org/p/1316887/) theme, [Material-black COLORS](https://www.pling.com/p/1333360/) icons and [Breeze](https://www.gnome-look.org/p/999927/) cursors.
+
 ## Bluetooth
 
 The following instructions can be used to connect to any bluetooth device, including bluetooth headsets.
@@ -86,3 +88,25 @@ For further info and troubleshooting, check the ArchWiki [here](https://wiki.arc
 ## Video drivers
 
 Although Xorg already comes with a generic video driver, it's important to install the correct one for your GPU to get the best performance. Check [here](https://wiki.archlinux.org/index.php/xorg#Driver_installation) which is the one you need.
+
+## Notifications
+
+Install [libnotify](https://archlinux.org/packages/extra/x86_64/libnotify/) and [notification-daemon](https://archlinux.org/packages/community/x86_64/notification-daemon/). Then, in `/usr/share/dbus-1/services` create the file `org.freedesktop.Notifications.service`if it doesn't already exist, and add the following lines to it:
+
+```
+[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=/usr/lib/notification-daemon-1.0/notification-daemon
+```
+
+Close session and after login notifications should be working. More [info](https://wiki.archlinux.org/index.php/Desktop_notifications).
+
+## System tray icons
+
+- Bluetooth: comes preinstalled with [blueman](https://archlinux.org/packages/community/x86_64/blueman/).
+- Volume: [volumeicon](https://archlinux.org/packages/community/x86_64/volumeicon/).
+- Network: [network-manager-applet](https://archlinux.org/packages/extra/x86_64/network-manager-applet/). Requires [networkmanager](https://archlinux.org/packages/extra/x86_64/networkmanager/).
+- Battery: [cbatticon](https://archlinux.org/packages/community/x86_64/cbatticon/)
+- Notifications: check the notifications section. The icon will appear automatically.
+
+Then, add [these](./.config/qtile/autostart.sh) lines to `~/.config/qtile/autostart.sh` so that the icons are initialized when you login.
