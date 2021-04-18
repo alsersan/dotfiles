@@ -212,7 +212,8 @@ screens = [
                 widget.CheckUpdates(
                     update_interval = 1800,
                     distro = "Arch_checkupdates",
-                    display_format = "{updates}",                                                               
+                    display_format = "{updates}",   
+                    no_update_string = '0',                                                            
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')},
                 ),
                 widget.CurrentLayoutIcon(
