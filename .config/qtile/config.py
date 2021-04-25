@@ -30,16 +30,16 @@ keys = [
         desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(),
-        desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(),
-        desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(),
-        desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # Resize windows
+    Key([mod, "control"], "p", lazy.layout.maximize(), desc="Toggle a client window between its minimum and maximum sizes"),
+    Key([mod, "control"], "o", lazy.layout.normalize(), desc="Reset all secondary client window sizes"),
+    Key([mod, "control"], "i", lazy.layout.reset(), desc="Reset all client window sizes"),
+    Key([mod, "control"], "j", lazy.layout.grow_main(), desc="Grow main window"),
+    Key([mod, "control"], "h", lazy.layout.shrink_main(), desc="Shrink main window"),
+    Key([mod, "control"], "l", lazy.layout.grow(), desc="Grow window"),
+    Key([mod, "control"], "k", lazy.layout.shrink(), desc="Shrink window"),
+    
+    
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -130,6 +130,9 @@ layout_conf = {
     'border_focus': colors[5][0],
     'border_width': 1,
     'margin': 6,
+    'min_ratio': 0.5,
+    'max_ratio': 0.7,
+    'grow_ratio': 0.1
 }
 
 layouts = [
