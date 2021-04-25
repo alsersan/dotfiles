@@ -28,7 +28,8 @@ keys = [
         desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), 
+        desc="Move window up"),
 
     # Resize windows
     Key([mod, "control"], "p", lazy.layout.maximize(), desc="Toggle a client window between its minimum and maximum sizes"),
@@ -59,10 +60,10 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 
     ### MULTIPLE MONITORS
-    Key([mod], "1", lazy.spawn("/home/alser/.screenlayout/only-external.sh"), lazy.restart(), desc="Only external display"),
-    Key([mod], "2", lazy.spawn("/home/alser/.screenlayout/only-laptop.sh"), lazy.restart(), desc="Only laptop display"),
-    Key([mod], "3", lazy.spawn("/home/alser/.screenlayout/extended-primary-external.sh"), lazy.restart(), desc="Extended vertical layout, external display primary"),
-    Key([mod], "4", lazy.spawn("/home/alser/.screenlayout/extended-primary-laptop.sh"), lazy.restart(), desc="Extended vertical layout, laptop display primary"),
+    Key([mod], "F1", lazy.spawn("/home/alser/.screenlayout/only-external.sh"), lazy.restart(), desc="Only external display"),
+    Key([mod], "F2", lazy.spawn("/home/alser/.screenlayout/only-laptop.sh"), lazy.restart(), desc="Only laptop display"),
+    Key([mod], "F3", lazy.spawn("/home/alser/.screenlayout/extended-primary-external.sh"), lazy.restart(), desc="Extended vertical layout, external display primary"),
+    Key([mod], "F4", lazy.spawn("/home/alser/.screenlayout/extended-primary-laptop.sh"), lazy.restart(), desc="Extended vertical layout, laptop display primary"),
 
     ### PROGRAMS
     # Rofi 
@@ -109,18 +110,17 @@ colors = [["#191919", "#191919"], # 0 - panel background
 
 ### GROUPS
 groups = [Group(i) for i in [" ", " ", " ", " "]]
-letters = ["a", "s", "d", "f"]
 
-for i, group in enumerate(groups):
+for i, group in enumerate(groups, 1):
     keys.extend([
         ### Switch to selected group
-        Key([mod], letters[i], lazy.group[group.name].toscreen()),
+        Key([mod], str(i), lazy.group[group.name].toscreen()),
 
         ### Send window to selected group
-        Key([mod, "shift"], letters[i], lazy.window.togroup(group.name))
+        Key([mod, "shift"], str(i), lazy.window.togroup(group.name))
 
         ### Or, send window to selected group and switch to that group (uncomment only one)
-        # Key([mod, "shift"], letters[i], lazy.window.togroup(group.name, switch_group=True))
+        # Key([mod, "shift"], i, lazy.window.togroup(group.name, switch_group=True))
     ])
 
 
