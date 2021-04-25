@@ -128,11 +128,8 @@ for i, group in enumerate(groups, 1):
 ### LAYOUTS
 layout_conf = {
     'border_focus': colors[5][0],
-    'border_width': 1,
-    'margin': 6,
-    'min_ratio': 0.5,
-    'max_ratio': 0.7,
-    'grow_ratio': 0.1
+    'border_width': 2,
+    'margin': 5,    
 }
 
 layouts = [
@@ -141,8 +138,22 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(**layout_conf),
-    # layout.MonadWide(),
+    layout.MonadTall(
+        border_focus = colors[5][0],
+        border_width = 2,
+        margin = 5,
+        ratio = 0.7,
+        min_ratio = 0.5, 
+        max_ratio = 0.7
+    ),
+    # layout.MonadWide(
+    #     border_focus = colors[5][0],
+    #     border_width = 2,
+    #     margin = 5,
+    #     ratio = 0.75,
+    #     min_ratio = 0.5, 
+    #     max_ratio = 0.75
+    # ),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
