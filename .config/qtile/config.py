@@ -60,11 +60,10 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 
     ### MULTIPLE MONITORS
-    Key([mod], "F1", lazy.spawn("/home/alser/.screenlayout/only-external.sh"), lazy.restart(), desc="Only external display"),
-    Key([mod], "F2", lazy.spawn("/home/alser/.screenlayout/only-laptop.sh"), lazy.restart(), desc="Only laptop display"),
-    Key([mod], "F3", lazy.spawn("/home/alser/.screenlayout/extended-primary-external.sh"), lazy.restart(), desc="Extended vertical layout, external display primary"),
-    Key([mod], "F4", lazy.spawn("/home/alser/.screenlayout/extended-primary-laptop.sh"), lazy.restart(), desc="Extended vertical layout, laptop display primary"),
-
+    Key([mod], "F1", lazy.spawn("autorandr laptop"), lazy.restart(), desc="Only laptop display"),
+    Key([mod], "F2", lazy.spawn("autorandr external-docked"), lazy.restart(), desc="External + laptop below"),
+    Key([mod], "F3", lazy.spawn("autorandr only-external"), lazy.restart(), desc="Only external display"),
+    
     ### PROGRAMS
     # Rofi 
     Key([mod], "m", lazy.spawn("rofi -show run"), desc="Launch Rofi"),  
