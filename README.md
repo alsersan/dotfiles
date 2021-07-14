@@ -67,7 +67,7 @@ Finally, you can switch off the scanning.
 scan off
 ```
 
-When you need to pair another device, just follow the steps above, starting from the `scan on` command.
+When you need to pair another device, just follow the steps above, starting from the `scan on` command. To exit, type `exit`.
 
 By default, the Bluetooth adapter does not power on after a reboot, you need to add the line `AutoEnable=true` in the configuration file `/etc/bluetooth/main.conf` at the bottom in the `[Policy]` section:
 
